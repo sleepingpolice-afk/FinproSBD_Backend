@@ -23,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/voter", cors(corsOption), rute);
 app.use("/candidate", cors(corsOption), require("./src/routes/candidateroute"));
+app.use("/main", cors(corsOption), require("./src/routes/mainroute"));
+app.use("/branch", cors(corsOption), require("./src/routes/branchroute"));
 
 app.listen(port, () => {
   console.log(`Running on port ${port}!`);
