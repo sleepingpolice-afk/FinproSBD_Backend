@@ -16,7 +16,8 @@ CREATE TABLE Voter (
     Password VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL UNIQUE,
     Age INT NOT NULL,
-    Status status_nikah
+    Status status_nikah,
+    Region branches NOT NULL DEFAULT 'branch1'
 );
 
 CREATE TABLE branch1 (

@@ -6,9 +6,9 @@ exports.registerVoter = async function (req, res) {
     const passwordRegex = /^(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/;
     const saltRounds = 10;
 
-    const { name, email, password, age, status } = req.query;
+    const { name, email, password, age, status, region } = req.query;
 
-    if (!email || !password || !name || !age || !status) {
+    if (!email || !password || !name || !age || !status, !region) {
         return res.status(400).json({ message: 'Semua field harus diisi!' });
     }
 
@@ -20,8 +20,8 @@ exports.registerVoter = async function (req, res) {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const result = await pg.query(
-            'INSERT INTO Voter(name, email, password, age, status) VALUES($1, $2, $3, $4, $5) RETURNING *',
-            [name, email, hashedPassword, age, status]
+            'INSERT INTO Voter(name, email, password, age, status, region) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+            [name, email, hashedPassword, age, status, region]
         );
 
         return res.status(201).json({ success: true, message: "Voter registered successfully", payload: result.rows[0] });
