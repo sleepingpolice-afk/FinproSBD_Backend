@@ -268,3 +268,35 @@ exports.getVoteById3 = async function(req, res) {
         res.status(500).json({ success: false, message: 'Server error', error });
     }
 }
+
+
+
+//CEK USER UDH VOTE APA BLUM
+exports.checkIfUserHasVoted = async function(req, res) {
+    const voterId = req.params.voterId;
+
+    try {
+        const result = await pg.query(`
+            SELECT voter FROM (
+                SELECT voter FROM branch1
+                UNION
+                SELECT voter FROM branch2
+                UNION
+                SELECT voter FROM branch3
+            ) AS all_votes
+            WHERE voter = $1
+        `, [voterId]);
+
+        const hasVoted = result.rowCount > 0;
+
+        res.status(200).json({
+            success: true,
+            message: hasVoted ? "User has voted" : "User has not voted",
+            payload: { hasVoted }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Server error', error });
+    }
+};
+

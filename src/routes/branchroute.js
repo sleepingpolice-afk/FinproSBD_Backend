@@ -20,4 +20,6 @@ router.get("/3/:id", controller.getVoteById3);
 router.put("/3/:id", controller.updateVote3);
 router.delete("/3/:id", controller.deleteVote3);
 
+router.get("/checkvote/:voterId", controller.checkIfUserHasVoted);
+
 module.exports = router;
