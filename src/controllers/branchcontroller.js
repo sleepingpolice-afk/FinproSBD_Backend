@@ -11,8 +11,8 @@ exports.addVote1 = async function(req, res) {
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch1 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
-            [Voter, CandidateID]
+            'INSERT INTO branch1 (Voter, CandidateID) VALUES ($1, $2) RETURNING *',
+            [Voter, CandidateID]    
         );
 
         res.status(201).json({ success: true, message: 'Vote added successfully', payload: queryResult.rows[0] });
@@ -101,7 +101,7 @@ exports.addVote2 = async function(req, res) {
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch2 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
+            'INSERT INTO branch2 (Voter, CandidateID) VALUES ($1, $2) RETURNING *',
             [Voter, CandidateID]
         );
 
@@ -192,7 +192,7 @@ exports.addVote3 = async function(req, res) {
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch3 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
+            'INSERT INTO branch3 (Voter, CandidateID) VALUES ($1, $2) RETURNING *',
             [Voter, CandidateID]
         );
 
