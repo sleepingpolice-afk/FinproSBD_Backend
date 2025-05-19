@@ -25,6 +25,7 @@ app.use("/voter", cors(corsOption), rute);
 app.use("/candidate", cors(corsOption), require("./src/routes/candidateroute"));
 app.use("/main", cors(corsOption), require("./src/routes/mainroute"));
 app.use("/branch", cors(corsOption), require("./src/routes/branchroute"));
+app.use("/countdown", cors(corsOption), require("./src/routes/countdownroute"));
 
 app.listen(port, () => {
   console.log(`Running on port ${port}!`);

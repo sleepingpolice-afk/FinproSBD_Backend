@@ -3,16 +3,16 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 exports.addVote1 = async function(req, res) {
-    const { VoteID, Voter, CandidateID } = req.body;
+    const { Voter, CandidateID } = req.body;
 
-    if (!VoteID || !Voter || !CandidateID) {
-        return res.status(400).json({ success: false, message: 'VoteID, Voter, and CandidateID are required', payload: null });
+    if (!Voter || !CandidateID) {
+        return res.status(400).json({ success: false, message: 'Voter, and CandidateID are required', payload: null });
     }
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch1 (VoteID, Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
-            [VoteID, Voter, CandidateID]
+            'INSERT INTO branch1 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
+            [Voter, CandidateID]
         );
 
         res.status(201).json({ success: true, message: 'Vote added successfully', payload: queryResult.rows[0] });
@@ -93,16 +93,16 @@ exports.getVoteById1 = async function(req, res) {
 
 
 exports.addVote2 = async function(req, res) {
-    const { VoteID, Voter, CandidateID } = req.body;
+    const {Voter, CandidateID } = req.body;
 
-    if (!VoteID || !Voter || !CandidateID) {
-        return res.status(400).json({ success: false, message: 'VoteID, Voter, and CandidateID are required', payload: null });
+    if (!Voter || !CandidateID) {
+        return res.status(400).json({ success: false, message: 'Voter, and CandidateID are required', payload: null });
     }
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch2 (VoteID, Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
-            [VoteID, Voter, CandidateID]
+            'INSERT INTO branch2 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
+            [Voter, CandidateID]
         );
 
         res.status(201).json({ success: true, message: 'Vote added successfully', payload: queryResult.rows[0] });
@@ -184,16 +184,16 @@ exports.getVoteById2 = async function(req, res) {
 
 
 exports.addVote3 = async function(req, res) {
-    const { VoteID, Voter, CandidateID } = req.body;
+    const { Voter, CandidateID } = req.body;
 
-    if (!VoteID || !Voter || !CandidateID) {
-        return res.status(400).json({ success: false, message: 'VoteID, Voter, and CandidateID are required', payload: null });
+    if (!Voter || !CandidateID) {
+        return res.status(400).json({ success: false, message: 'Voter, and CandidateID are required', payload: null });
     }
 
     try {
         const queryResult = await pg.query(
-            'INSERT INTO branch3 (VoteID, Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
-            [VoteID, Voter, CandidateID]
+            'INSERT INTO branch3 (Voter, CandidateID) VALUES ($1, $2, $3) RETURNING *',
+            [Voter, CandidateID]
         );
 
         res.status(201).json({ success: true, message: 'Vote added successfully', payload: queryResult.rows[0] });

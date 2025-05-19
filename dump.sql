@@ -53,8 +53,11 @@ CREATE TABLE main (
     FOREIGN KEY (CandidateID) REFERENCES Candidate(CandidateID) ON DELETE CASCADE
 );
 
-
-
+CREATE TABLE countdown (
+    countdownID UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    end_time TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP + INTERVAL '1 hour'),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 INSERT INTO Candidate VALUES
 ('00000000-0000-0000-0000-000000000001', 'Alice', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYJdvMCLnoRNJS71p04s2ahHfBmzcOTIwtQg&s', 'Strong leader'),
@@ -80,3 +83,4 @@ SELECT VoteID, Voter, CandidateID, 'branch2'::branches FROM branch2
 UNION
 SELECT VoteID, Voter, CandidateID, 'branch3'::branches FROM branch3;
 
+INSERT INTO countdown DEFAULT VALUES;
